@@ -20,7 +20,7 @@ function server_shutdown() {
 # creating a named pipe, so java does not close stdin when moved to the background
 mkfifo /in
 # block the pipe, so it's open forever
-sleep infinity > /data/in &
+sleep 100000d > /in &
 # run terraria as the second service
 echo "Starting Starbound server..."
 # move to background so we can monitor for SIGTERM in this shell
