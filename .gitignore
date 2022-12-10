@@ -1,2 +1,5 @@
-game
-storage
+\!*
+buildcontext/game
+universe-*
+*.env
+

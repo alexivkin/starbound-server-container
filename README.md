@@ -1,22 +1,34 @@
 # Starbound server in a docker container
 
-Allows graceful shutdown by issuing the `exit` command to the server when the docker container is stopped,
+A Starbound server launcher with the following features:
+
+* supports running multiple servers at the same time and servers with mods
+* running in a docker container, fully isolated from the host
+* performing a graceful stop/shutdown correctly, saving the world data before existing
+* automatically restarting the server if it crashes
 
 ### Building
 
-You need to copy the "game" folder from the game into the buildcontext folder. Then run
-
-	docker build -t alexivkin/starbound-server buildcontext
+Copy the "game" folder from the game into the buildcontext folder. Then use `run.sh` as shown below. It will notice that the image is missing and will build it before starting the server.
 
 ### Running
 
-Start by running `./run.sh`. The universe and the server configuration is mapped to the `storage` folder.
+Create a file with a name of your server and extension `.env` using the `server.env.example` as an example. Then run
+
+`./run.sh <server_name>.env [-f|-d]`
+
+* `-f` will run the server in the foreground
+* `-d` will drop into an interactive shell rather than starting the server
+
+The universe and the server configuration is mapped to the `storage` and `mods` folders under `universe-$SERVER_NAME`.
+
+To stop use `docker stop starbound-server-$NAME`
 
 ### Checking
 
-Run `docker logs starbound-server`
+Run `docker logs starbound-server-$NAME`
 
 ### Known issues
 
 If the server crashes for whatever reason the docker container will keep running. This is so you can see the logs from the crash.
-if you want to terminate container when server crashes comment out the forever wait loop in the `serverwatcher.sh`
+If you want to terminate container when server crashes, then comment out the forever wait loop in the `serverwatcher.sh`
