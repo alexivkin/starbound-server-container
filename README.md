@@ -22,13 +22,9 @@ Create a file with a name of your server and extension `.env` using the `server.
 
 The universe and the server configuration is mapped to the `storage` and `mods` folders under `universe-$SERVER_NAME`.
 
-To stop use `docker stop starbound-server-$NAME`
-
-### Checking
-
-Run `docker logs starbound-server-$NAME`
-
-### Known issues
+* To stop use `docker stop starbound-server-$NAME`
+* To restart the server simply use `./run.sh` again
+* To check the logs run `docker logs starbound-server-$NAME`
 
 If the server crashes for whatever reason the docker container will keep running. This is so you can see the logs from the crash.
-If you want to terminate container when server crashes, then comment out the forever wait loop in the `serverwatcher.sh`
+If you want to terminate the container when the server crashes, then comment out the forever wait loop in the `serverwatcher.sh` under the `buildcontext`

@@ -59,6 +59,6 @@ mkdir -p $(pwd)/universe-$NAME/mods
 
 # cant use --env-file $CONFIG - does not support multiline envs
 
-check_and_stop minecraft-server-$NAME
+check_and_stop starbound-server-$NAME
 
 docker run $runopt --name starbound-server-$NAME -p $PORT:21025 -v $(pwd)/universe-$NAME/storage/:/game/storage/ -v $(pwd)/universe-$NAME/mods/:/game/mods/ alexivkin/starbound-server:$VER
